@@ -47,11 +47,14 @@ class MongoDB:
 
     def get_user_id(self, email):
         criteria = {'email': email}
-        return self.users_col.find_one(criteria)['_id']
+        try:
+            return self.users_col.find_one(criteria)['_id']
+        except TypeError:
+            return 0
 
     def new_user(self, email, password, name, surname, role, city):
         if check_email(email):
-            if self.get_user_id(email):
+            if not self.get_user_id(email):
                 salt = self._create_salt()
                 pass_sha256 = hashlib.sha256(bytes(password + salt, encoding='UTF-8')).hexdigest()
                 user = {'email': email, 'password_hash': pass_sha256, 'salt': salt,
@@ -62,6 +65,21 @@ class MongoDB:
                 return 0
         else:
             return 0
+
+    def check_login(self, email, password):
+        user = self.get_user(email=email)
+        if user:
+            salt = user['salt']
+            salted_hash = hashlib.sha256(bytes(password + salt, encoding='UTF-8')).hexdigest()
+
+            if salted_hash == user['password_hash']:
+                return True
+            else:
+                return False
+        else:
+            return False
+
+
 
     def get_users(self, **kwargs):
         cursor = self.users_col.find(kwargs)
@@ -75,13 +93,15 @@ class MongoDB:
         user = self.users_col.find_one(kwargs)
         return user
 
-    def remove_user(self, email='', **kwargs):
+    def remove_user(self, email='', remove_connected=True, **kwargs):
         if email:
             criteria = {'email': email}.update(kwargs)
         else:
             criteria = kwargs
 
         if self.users_col.count_documents(criteria) == 1:
+            if remove_connected:
+                self.remove_tasks(user=email)
             return self.users_col.delete_one(criteria)
         else:
             return 0
@@ -94,17 +114,33 @@ class MongoDB:
 
     #-----------------TASKS------------------
 
-    def new_task(self, user, task_title, task_content, tags):
-        task = {'user': user, 'title': task_title, 'content': task_content, 'tags': tags}
-        return self._insert_document(self.tasks_col, task)
+    def new_task(self, user_email, task_title, task_content, tags):
+        if self.get_user_id(user_email):
+            task = {'user': user_email, 'title': task_title, 'content': task_content, 'tags': tags}
+            return self._insert_document(self.tasks_col, task)
+        else:
+            return 0
 
     def get_tasks_by_user(self, email=''):
 
         criteria = {'user': email}
-        cursor = self.users_col.find(criteria)
+        cursor = self.tasks_col.find(criteria)
 
         result = []
-        for user in cursor:
-            result.append(user)
+        for task in cursor:
+            result.append(task)
         return result
 
+    def remove_task(self, _id='', **kwargs):
+        if _id:
+            criteria = {'_id': _id}.update(kwargs)
+        else:
+            criteria = kwargs
+
+        if self.tasks_col.count_documents(criteria) == 1:
+            return self.tasks_col.delete_one(criteria)
+        else:
+            return 0
+
+    def remove_tasks(self, **kwargs):
+        return self.tasks_col.delete_many(kwargs)
