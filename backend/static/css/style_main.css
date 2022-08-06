@@ -1,0 +1,69 @@
+
+.title{
+
+position: absolute;
+left: 33vw;
+right: 45.5vw;
+top: 4vw;
+
+
+font-family: 'Abhaya Libre ExtraBold';
+font-style: normal;
+
+font-size: 5vw;
+
+text-align: center;
+
+color: #000000;
+}
+
+.under_title{
+    /* Простая и удобная веб-система для управления проектами в сфере СМИ */
+
+width: 40vw;
+position: absolute;
+left: 25vw;
+right: 47vw;
+top: 15vw;
+
+
+font-family: 'Abhaya Libre';
+font-style: normal;
+font-weight: 400;
+font-size: 2vw;
+line-height: 4vw;
+text-align: center;
+
+color: #000000;
+
+}
+
+
+
+
+.first{
+    position: absolute;
+left: 70vw;
+
+top: 6vw;
+
+width:25vw;
+}
+
+
+.public{
+    position: absolute;
+    left: 25vw;
+    
+    top: 35vw;
+    
+    width:30vw;
+}
+.text{
+    position: absolute;
+    left: 65vw;
+    
+    top: 38vw;
+    
+    width:30vw;
+}
