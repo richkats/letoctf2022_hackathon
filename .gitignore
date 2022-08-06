@@ -230,5 +230,6 @@ fabric.properties
 # Android studio 3.1+ serialized cache file
 .idea/caches/build_file_checksums.ser
 
-# DB credentials
+# DB module
 backend/dbmodule/db_creds.py
+/backend/dbmodule/tests.py
