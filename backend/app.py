@@ -12,11 +12,23 @@ def index():
 
 
 def dashboard():
-    return "<h1>dashboard</h1>"
+    return render_template("dashboard.html")
 
 
-def templates():
-    return "<h1>template</h1>"
+def list_page():
+    return render_template("list_page.html")
+
+
+def statistic_page():
+    return render_template("statistic_page.html")
+
+
+def group_page():
+    return render_template("group_page.html")
+
+
+def pattern_page():
+    return render_template("pattern_page.html")
 
 
 if __name__ == "__main__":
