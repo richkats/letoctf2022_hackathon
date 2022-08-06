@@ -1,0 +1,1 @@
+DB_PASS = 'zI88i5LmlIQDdQ81'
