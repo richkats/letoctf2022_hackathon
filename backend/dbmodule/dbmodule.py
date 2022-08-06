@@ -4,6 +4,8 @@ import string
 import random
 import hashlib
 import re
+from db_creds import DB_PASS
+
 
 
 def check_email(email):
@@ -16,7 +18,7 @@ def check_email(email):
 class MongoDB:
     def __init__(self):
         self.client = pymongo.MongoClient(
-            "mongodb+srv://MediaConeDB:zI88i5LmlIQDdQ81@cluster0.6gmfovn.mongodb.net/?retryWrites=true&w=majority")
+            f"mongodb+srv://MediaConeDB:{DB_PASS}@cluster0.6gmfovn.mongodb.net/?retryWrites=true&w=majority")
         self.db = self.client.mediacone_db
         self.users_col = self.db.users
         self.tasks_col = self.db.tasks
