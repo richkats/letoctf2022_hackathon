@@ -93,14 +93,12 @@ class MongoDB:
         user = self.users_col.find_one(kwargs)
         return user
 
-    def remove_user(self, email='', remove_connected=True, **kwargs):
-        if email:
-            criteria = {'email': email}.update(kwargs)
-        else:
-            criteria = kwargs
+    def remove_user(self, remove_connected=True, **kwargs):
+        criteria = kwargs
 
         if self.users_col.count_documents(criteria) == 1:
             if remove_connected:
+                email = self.get_user(**kwargs)['email']
                 self.remove_tasks(user=email)
             return self.users_col.delete_one(criteria)
         else:
@@ -131,11 +129,8 @@ class MongoDB:
             result.append(task)
         return result
 
-    def remove_task(self, _id='', **kwargs):
-        if _id:
-            criteria = {'_id': _id}.update(kwargs)
-        else:
-            criteria = kwargs
+    def remove_task(self, **kwargs):
+        criteria = kwargs
 
         if self.tasks_col.count_documents(criteria) == 1:
             return self.tasks_col.delete_one(criteria)
