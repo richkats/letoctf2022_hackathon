@@ -1,0 +1,245 @@
+.menu{
+    /* Menu */
+
+
+position: fixed;
+width: 22vw;
+height: 100%;
+left: 0px;
+top: 0px;
+
+/* other/gray */
+
+background-color: #F3F3F3;;
+}
+
+
+
+.check_mark{
+
+position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 18.5vw;
+bottom: 12.5%;
+width: 2vw;
+/* icons/econdary */
+
+
+}
+
+.near_menu{
+    position: absolute;
+width: 0.2vw;
+left: 22vw;
+top: 0%;
+bottom: 0%;
+
+background: #E8E8E8;
+}
+
+.pattern_block{
+    /* Menu_item */
+
+
+/* Auto layout */
+margin: 0vw 0vw 0vw 0vw;
+
+
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0.8vw 1.2vw;
+gap: 1.2vw;
+
+width: 18.5vw;
+height: 4vw;
+
+
+border-radius: 0.8vw;
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+}
+
+.pattern_text{
+    width: 15vw;
+height: 1.8vw;
+
+/* Text small ( 14px | medium ) */
+
+font-family: 'Golos';
+font-style: normal;
+font-weight: 500;
+font-size: 2vw;
+line-height: 1.8vw;
+/* identical to box height, or 129% */
+
+display: flex;
+align-items: center;
+margin: 0 0 0 5vw;
+/* text / primary */
+
+color: #2C3030;
+
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+flex-grow: 1;
+}
+
+
+
+.list_tasks{
+    width: 15vw;
+    height: 1.8vw;
+    
+    /* Text small ( 14px | medium ) */
+    
+    font-family: 'Golos';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 2vw;
+    line-height: 1.8vw;
+    /* identical to box height, or 129% */
+    
+    display: flex;
+    align-items: center;
+    margin: 0 0 0 5vw;
+    /* text / primary */
+    
+    color: #2C3030;
+    
+    
+    /* Inside auto layout */
+    
+    flex: none;
+    order: 1;
+    flex-grow: 1;
+}
+
+.block_list_tasks{
+    /* Menu_item */
+
+
+/* Auto layout */
+margin: 2vw 0vw 0vw 0vw;
+
+
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0.8vw 1.2vw;
+gap: 1.2vw;
+
+width: 18.5vw;
+height: 4vw;
+
+
+border-radius: 0.8vw;
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+}
+
+.list{
+    position: absolute;
+left: 12.5%;
+right: 12.5%;
+top: 13vw;
+bottom: 12.5%;
+width: 2vw;
+/* icons/primary */
+
+
+}
+
+
+.main_them{
+    /* Menu_item */
+
+position:relative;
+/* Auto layout */
+margin: 3.5vw 0vw 0vw 0vw;
+position: t;
+
+display: flex;
+flex-direction: row;
+align-items: center;
+padding: 0.8vw 1.2vw;
+gap: 1.2vw;
+
+width: 18.5vw;
+height: 4vw;
+
+
+border-radius: 0.8vw;
+
+/* Inside auto layout */
+
+flex: none;
+order: 1;
+align-self: stretch;
+flex-grow: 0;
+}
+
+h1{
+    font-size: 3vw;
+    padding: 0 0 0 5vw;
+}
+
+
+.main_svg{
+    position: absolute;
+    left: 3%;
+    right: 12.5%;
+    top: 2%;
+    bottom: 12.5%;
+    width: 5vw;
+    /* icons/econdary */
+}
+
+
+
+.people{
+    position: absolute;
+    left: 10%;
+    right: 0.3%;
+    top: 23.5vw;
+    bottom: 12.5%;
+    width: 3vw;
+    /* icons/primary */
+}
+
+.analis{
+    position: absolute;
+    left: 12.5%;
+    right: 0.5%;
+    top: 29.5vw;
+    bottom: 12.5%;
+    width: 2vw;
+    /* icons/primary */
+}
+
+a { 
+    color: black;
+    text-decoration: none; /* Отменяем подчеркивание у ссылки */
+   } 
+a:hover{
+    color: green;
+}
+
+
+a main_page:hover{
+    color: black;
+}
