@@ -16,7 +16,7 @@ def dashboard():
 
 
 def templates():
-    return "<h1>templates</h1>"
+    return "<h1>template</h1>"
 
 
 if __name__ == "__main__":
