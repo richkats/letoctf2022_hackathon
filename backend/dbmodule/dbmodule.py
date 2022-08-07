@@ -5,6 +5,7 @@ import random
 import hashlib
 import re
 from dbmodule.db_creds import DB_PASS
+from ..Parser.parser import parser
 
 
 
@@ -130,6 +131,7 @@ class MongoDB:
 
         result = []
         for task in cursor:
+            task.update({'_id': str(task['_id'])})
             result.append(task)
         return result
 
@@ -143,5 +145,18 @@ class MongoDB:
 
     def remove_tasks(self, **kwargs):
         return self.tasks_col.delete_many(kwargs)
+
+    def collect_news(self):
+        news = parser()
+
+        result = []
+        for tag in news:
+            for i in range(len(news[tag][0])):
+                title = news[tag][0][i].decode()
+                news_tag = tag
+                url = news[tag][1][i]
+                date = news[tag][2][i]
+
+
 
 

@@ -7,5 +7,10 @@ def Get(SomePath):
     for root, dirs, files in walk(SomePath):
         for file in files:
             filelist.append(path.join(root, file))
-    f = open(filelist[0], 'r')
-    return f.read()
+
+    strList = []
+    for i in range(0, num_files):
+        f = open(filelist[i], 'r')
+        strList.append(f.read())
+        f.close()
+    return strList
