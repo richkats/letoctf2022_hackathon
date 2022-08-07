@@ -2,7 +2,7 @@ from RSS_Creator import Main_Parser_Func, File_Lists_Path, Token_Path
 from Error_Logger import Error_Writter_txt
 from Token_Getter import Get
 
-def main():
+def parser():
     try:
         Main_Parser_Func()
     except Exception as e:

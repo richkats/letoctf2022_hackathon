@@ -1,11 +1,10 @@
 import pymongo
-import json
 import string
 import random
 import hashlib
 import re
-from dbmodule.db_creds import DB_PASS
-from ..Parser.parser import parser
+from db_creds import DB_PASS
+# from letoctf2022_hackathon.backend.Parser.parser import parser
 
 
 
@@ -146,17 +145,24 @@ class MongoDB:
     def remove_tasks(self, **kwargs):
         return self.tasks_col.delete_many(kwargs)
 
-    def collect_news(self):
-        news = parser()
+    # def collect_news(self, user_id):
+    #     news = parser()
+    #
+    #     result = []
+    #     a = 0
+    #     for tag in news:
+    #         for i in range(len(news[a]['tag']['article'][0])):
+    #             title = news[tag]['article'][0][i].decode()
+    #             news_tag = tag
+    #             url = news[tag][1][i]
+    #             date = news[tag][2][i]
+    #             result.append({'title': title, 'tag': news_tag, 'url': url, 'date': date})
+    #         a+=1
+    #
+    #     for task in result:
+    #         self.new_task(user_id, task['title'], task['date'], task['tag'])
 
-        result = []
-        for tag in news:
-            for i in range(len(news[tag][0])):
-                title = news[tag][0][i].decode()
-                news_tag = tag
-                url = news[tag][1][i]
-                date = news[tag][2][i]
-
-
+if __name__ == '__main__':
+    db = MongoDB()
 
 
