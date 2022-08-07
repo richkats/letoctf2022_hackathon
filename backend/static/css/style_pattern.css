@@ -1,7 +1,8 @@
 .info{
 
     display: block;
-    position: relative;
+    position:absolute;
+
 
 
     width: 30vw;
