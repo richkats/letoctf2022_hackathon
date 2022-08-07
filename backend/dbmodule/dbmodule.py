@@ -4,7 +4,7 @@ import string
 import random
 import hashlib
 import re
-from db_creds import DB_PASS
+from dbmodule.db_creds import DB_PASS
 
 
 
@@ -45,16 +45,19 @@ class MongoDB:
 
     # -----------------USERS------------------
 
-    def get_user_id(self, email):
-        criteria = {'email': email}
-        try:
-            return self.users_col.find_one(criteria)['_id']
-        except TypeError:
+    def get_user_id(self, **kwargs):
+        criteria = kwargs
+        if self.users_col.count_documents(criteria) == 1:
+            try:
+                return str(self.users_col.find_one(criteria)['_id'])
+            except TypeError:
+                return 0
+        else:
             return 0
 
     def new_user(self, email, password, name, surname, role, city):
         if check_email(email):
-            if not self.get_user_id(email):
+            if not self.get_user_id(email=email):
                 salt = self._create_salt()
                 pass_sha256 = hashlib.sha256(bytes(password + salt, encoding='UTF-8')).hexdigest()
                 user = {'email': email, 'password_hash': pass_sha256, 'salt': salt,
@@ -89,8 +92,9 @@ class MongoDB:
             result.append(user)
         return result
 
-    def get_user(self, **kwargs):
+    def get_user(self, _id='', **kwargs):
         user = self.users_col.find_one(kwargs)
+        user.update({'_id': str(user['_id'])})
         return user
 
     def remove_user(self, remove_connected=True, **kwargs):
@@ -112,16 +116,16 @@ class MongoDB:
 
     #-----------------TASKS------------------
 
-    def new_task(self, user_email, task_title, task_content, tags):
-        if self.get_user_id(user_email):
-            task = {'user': user_email, 'title': task_title, 'content': task_content, 'tags': tags}
+    def new_task(self, user_id, task_title, task_content, tags):
+        if self.get_user(_id=user_id):
+            task = {'user_id': user_id, 'title': task_title, 'content': task_content, 'tags': tags}
             return self._insert_document(self.tasks_col, task)
         else:
             return 0
 
-    def get_tasks_by_user(self, email=''):
+    def get_tasks_by_user(self, _id=''):
 
-        criteria = {'user': email}
+        criteria = {'user_id': _id}
         cursor = self.tasks_col.find(criteria)
 
         result = []
@@ -139,3 +143,5 @@ class MongoDB:
 
     def remove_tasks(self, **kwargs):
         return self.tasks_col.delete_many(kwargs)
+
+

@@ -1,9 +1,3 @@
-https://www.consultant.ru/rss/hotdocs.xml
-https://www.consultant.ru/rss/fd.xml
-https://www.consultant.ru/rss/nw.xml
-https://www.consultant.ru/rss/db.xml
-https://www.consultant.ru/rss/fks.xml
-https://www.consultant.ru/rss/curprof.xml
 https://news.rambler.ru/rss/holiday/
 https://news.rambler.ru/rss/tech/
 https://news.rambler.ru/rss/technology/
