@@ -1,0 +1,45 @@
+.search{
+
+    position: absolute;
+    left: 25vw;
+    
+    top: 8vw;
+    
+
+
+}
+
+.search input{
+    padding: 1vw;
+    width: 30vw;
+    color: black;
+    font-size: 2vw;
+    background:none;
+}
+
+h2{
+
+    position: absolute;
+    left: 25vw;
+    width:30vw;
+    font-size: 3vw;
+}
+
+.info{
+    display: inline-block;
+    position: absolute;
+    left: 25vw;
+    top: 20vw;
+    width: 30vw;
+    height: 15vw;
+    border-radius: 1vw;
+    border: 0.2vw solid #d6d6d6;
+
+}
+
+.line{
+    position:absolute;
+    top:15vw;
+    width:100%;
+    border: 0.0003vw solid grey;
+}
