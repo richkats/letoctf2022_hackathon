@@ -3,7 +3,7 @@ import string
 import random
 import hashlib
 import re
-from letoctf2022_hackathon.backend.dbmodule.db_creds import DB_PASS
+from dbmodule.db_creds import DB_PASS
 # from letoctf2022_hackathon.backend.Parser.parser import parser
 
 
