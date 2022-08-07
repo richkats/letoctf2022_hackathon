@@ -94,7 +94,7 @@ class MongoDB:
 
     def get_user(self, _id='', **kwargs):
         user = self.users_col.find_one(kwargs)
-        user.update({'_id': str(user[_id])})
+        user.update({'_id': str(user['_id'])})
         return user
 
     def remove_user(self, remove_connected=True, **kwargs):
