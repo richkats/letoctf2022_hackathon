@@ -9,7 +9,7 @@
 <body>
     <style>
         @import '../static/css/style.css';
-        @import '../static/css/style_main.css';
+        @import '../static/css/style_pattern.css';
 
     </style>
 
@@ -72,8 +72,42 @@
 
 
    <div class="near_menu">
-       
+ 
    </nav>
+   {%set num = 1%}
+   {%for i in range(tasks|length)%}
+        {%if i> 2 and i%2==0%}
+            {%set num = i-1%}
+        {%endif%}
 
+        {%if (i+1)%2 == 0%}
+            {%set num = i-1%}
+        {%endif%}
+
+
+        {%if 2>i%}
+            {%set num = 1%}
+
+        {%endif%}
+
+        {%if i==2 or i ==3%}
+            {%set num = 2%}
+
+        {%endif%}
+        {%if i==4 or i ==5%}
+        {%set num = 3%}
+
+        {%endif%}
+        
+
+            <div style="left: ({{25+30*(i%2)}})vw;top: ({{num*20}})vw;" class="info">
+            
+                {{tasks[i]['title']}}<br>
+                {{tasks[i]['content']}}<br>
+                {%for tag in tasks[i]['tags']%}
+                    *{{tag}}<br>
+                {%endfor%}
+            </div>
+   {%endfor%}
 </body>
 </html>
