@@ -1,8 +1,15 @@
 # -*- coding: utf-8 -*-
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request, session
+from secrets import token_urlsafe
+import backend.dbmodule.dbmodule as mongo
+
 
 app = Flask(__name__)
+
+app.config['SECRET_KEY'] = token_urlsafe(16)
+
+db = mongo.MongoDB()
 
 
 @app.route("/")
@@ -11,9 +18,30 @@ def index():
     return "<h1>Sample index page</h1>"
 
 
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        form = request.form
+        email = form.get("email")
+        password = form.get("password")
+        user = db.get_user(email)
+        if user and user['password'] == password:
+            session['user_id'] = user["_id"]
+
+    return """<form action="" method="post">
+            <p>Email: <input type=text required="required" name=email>
+            <p>Password: <input type=text required="required" name=password>
+            <p><input type=submit value="Submit">
+        </form>"""
+
+
 @app.route("/dashboard")
 def dashboard():
-    return render_template("dashboard.html")
+    if "user_id" in session:
+        user = db.get_user(_id=session["user_id"])
+        tasks = db.get_tasks_by_user(user["_id"])
+        print(tasks)
+    return render_template("dashboard.html", tasks=tasks)
 
 
 @app.route("/list_page")
