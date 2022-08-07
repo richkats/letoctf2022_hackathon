@@ -4,7 +4,7 @@ import string
 import random
 import hashlib
 import re
-from db_creds import DB_PASS
+from dbmodule.db_creds import DB_PASS
 
 
 
