@@ -11,28 +11,28 @@ Token_Path = "Tokens\\"
 def Main_Parser_Func():
     def Main_Part(Feed_List):
         Feed_List_Parsed = []
-        Feed_List_Titles = []
         Feed_List_Entries = []
 
+
+        #for i in range(0, len(Feed_List)):
+
+        article = []
+        link = []
+        data = []
 
         for i in range(0, len(Feed_List)):
             Feed_List_Parsed.append(feedparser.parse(Feed_List[i]))
             Feed_List_Entries.append(Feed_List_Parsed[i].entries)
-
-        for i in range(0, len(Feed_List)):
-            article = []
-            link = []
-            data = []
             tag = Tag_Creator(File_Lists_Path + "News_URL_Test.txt")
             for entry in Feed_List_Entries[i]:
                 article_title = entry.title
                 article_link = entry.link
                 article_published_at = entry.published
 
-                print("{}[{}]".format(article_title, article_link))
+                #print("{}[{}]".format(article_title, article_link))
                 article.append("{}".format(article_title))
                 link.append("[{}]".format(article_link))
-                data.append("Published at {}".format(article_published_at))
+                data.append("{}".format(article_published_at))
 
             js = Json_Creator(tag[i], article, link, data)
             f = open(Token_Path + str(i) + '.json', 'w')
