@@ -41,7 +41,7 @@ def dashboard():
         user = db.get_user(_id=session["user_id"])
         tasks = db.get_tasks_by_user(user["_id"])
         print(tasks)
-    return render_template("dashboard.html", tasks=tasks)
+    return render_template("dashboard.html")
 
 
 @app.route("/list_page")
