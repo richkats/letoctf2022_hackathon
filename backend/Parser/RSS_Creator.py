@@ -1,6 +1,11 @@
 import feedparser
-from ErrorLogger import Error_Writter_txt
-from main import File_Lists_Path
+from Error_Logger import Error_Writter_txt
+#from main import File_Lists_Path
+from Tag_Creator import Tag_Creator
+from Json_Creator import Json_Creator
+
+File_Lists_Path = "File_Lists\\"
+
 
 def Main_Parser_Func():
     def Main_Part(Feed_Keys, length, Feed_List):
@@ -12,6 +17,8 @@ def Main_Parser_Func():
         Feed_List_Parsed = []
         Feed_List_Titles = []
         Feed_List_Entries = []
+
+
         for i in range(0, length):
             Feed_List_Parsed.append(feedparser.parse(Feed_List[i]))
             Feed_List_Entries.append(Feed_List_Parsed[i].entries)
@@ -19,20 +26,32 @@ def Main_Parser_Func():
             #print("FLE: ", Feed_List_Entries[i])
 
         for i in range(0, length):
+            #URL_File = File_Lists_Path + "News_URL_Test.txt"
+            #print(URL_File)
+            #tag = Tag_Creator(URL_File)
             for entry in Feed_List_Entries[i]:
                 article_title = entry.title
                 article_link = entry.link
                 article_published_at = entry.published  # Unicode string
-                article_published_at_parsed = entry.published_parsed  # Time object
+                #article_published_at_parsed = entry.published_parsed  # Time object
                 # article_author = entry.author  DOES NOT EXIST
-                content = entry.summary
+                #content = entry.summary
                 # article_tags = entry.tags  DOES NOT EXIST
-
-                print("{}[{}]".format(article_title, article_link))
-                print("Published at {}".format(article_published_at))
+                article = ("{}".format(article_title))
+                link = ("[{}]".format(article_link))
+                data = ("Published at {}".format(article_published_at))
+                print(#tag, "\n",
+                      article, "\n",
+                      link, "\n",
+                      data, "\n")
+                js = Json_Creator(article, link, data)
+                f = open("Tokens\\" + str(i) + '.json', 'w')
+                f.write(js)
+                f.close()
+        return
                 # print ("Published by {}".format(article_author))
-                print("Content {}".format(content))
-                # print("catagory{}".format(article_tags))
+                #print("Content {}".format(content))
+                #print("catagory{}".format(article_tags))
 
     def Feed_Keys_Creator(Feed_List):
         length = len(Feed_List)
@@ -83,12 +102,8 @@ def Main_Parser_Func():
 
 
     List_Reader_Feed_List_Creator()
-    return
 
-try:
-    Main_Parser_Func()
-except Exception as e:
-    Error_Writter_txt(e, File_Lists_Path + "Errors_Main_Parser_Func.txt")
+
 
 
 
