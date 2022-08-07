@@ -49,7 +49,7 @@ class MongoDB:
         criteria = kwargs
         if self.users_col.count_documents(criteria) == 1:
             try:
-                return self.users_col.find_one(criteria)['_id']
+                return str(self.users_col.find_one(criteria)['_id'])
             except TypeError:
                 return 0
         else:
@@ -94,6 +94,7 @@ class MongoDB:
 
     def get_user(self, _id='', **kwargs):
         user = self.users_col.find_one(kwargs)
+        user.update({'_id': str(user['_id'])})
         return user
 
     def remove_user(self, remove_connected=True, **kwargs):
