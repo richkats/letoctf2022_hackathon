@@ -74,7 +74,7 @@
    <div class="near_menu">
  
    </nav>
- 
+    {% with tasks %}
    {%for i in range(tasks|length)%}
         
         
@@ -88,5 +88,6 @@
                 {%endfor%}
             </div>
    {%endfor%}
+    {% endwith %}
 </body>
 </html>
