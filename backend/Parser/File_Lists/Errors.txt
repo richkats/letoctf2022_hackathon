@@ -8,3 +8,7 @@
 06.55: name 'tag' is not defined
 06.55: name 'tag' is not defined
 06.56: name 'tag' is not defined
+09.19: 'NoneType' object is not subscriptable
+09.21: 'NoneType' object is not subscriptable
+09.22: 'NoneType' object is not subscriptable
+09.28: 'NoneType' object is not subscriptable

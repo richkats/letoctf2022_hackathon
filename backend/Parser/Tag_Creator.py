@@ -16,9 +16,9 @@ def Tag_Creator(URL_File):
             text = ""
             for j in range(numb, len(URL_Arr[i])):
                 text += URL_Arr[i][j]
-            tag.append(text.replace('/', ""))
+            tag.remove('/')
 
         return tag
 
     except Exception as e:
-        Error_Writter_txt(e, "Errors_Tag_Creator.txt")
+        Error_Writter_txt(e, "File_Lists\\" + "Errors_Tag_Creator.txt")

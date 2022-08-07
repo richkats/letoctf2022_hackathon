@@ -7,7 +7,6 @@ def main():
         Main_Parser_Func()
     except Exception as e:
         print(Error_Writter_txt(e, File_Lists_Path + "Errors_Main_Parser_Func.txt"))
-    #print(Token_Sender())
     return Get(Token_Path)
 
 if __name__ == "__main__":
