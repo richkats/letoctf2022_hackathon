@@ -7,7 +7,10 @@ import dbmodule.dbmodule as mongo
 
 app = Flask(__name__)
 
-app.config['SECRET_KEY'] = token_urlsafe(16)
+# app.config['SECRET_KEY'] = token_urlsafe(16)
+
+app.config['SECRET_KEY'] = "sadrtfgyhjuklihuftyufrksdfxd"
+
 
 db = mongo.MongoDB()
 
