@@ -2,7 +2,7 @@
 
 from flask import Flask, render_template, request, session
 from secrets import token_urlsafe
-import backend.dbmodule.dbmodule as mongo
+import dbmodule.dbmodule as mongo
 
 
 app = Flask(__name__)
@@ -25,7 +25,7 @@ def login():
         email = form.get("email")
         password = form.get("password")
         user = db.get_user(email)
-        if user and user['password'] == password:
+        if user and db.check_login(email, password):
             session['user_id'] = user["_id"]
 
     return """<form action="" method="post">
