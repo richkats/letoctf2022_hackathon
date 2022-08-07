@@ -2,12 +2,14 @@
 
 from flask import Flask, render_template, request, session
 from secrets import token_urlsafe
-import backend.dbmodule.dbmodule as db
+import backend.dbmodule.dbmodule as mongo
 
 
 app = Flask(__name__)
 
 app.config['SECRET_KEY'] = token_urlsafe(16)
+
+db = mongo.MongoDB()
 
 
 @app.route("/")
