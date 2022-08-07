@@ -83,7 +83,11 @@ def group_page():
 
 @app.route("/pattern_page")
 def pattern_page():
-    return render_template("pattern_page.html")
+    if "user_id" in session:
+        user = db.get_user(_id=session["user_id"])
+        tasks = db.get_tasks_by_user(user["_id"])
+        print(tasks)
+    return render_template("pattern_page.html", tasks=tasks)
 
 
 if __name__ == "__main__":
